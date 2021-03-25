@@ -1,0 +1,26 @@
+<h3>Exo 2 : Asynchrone </h3>
+<script src="fmessage.js"></script>
+<script src="fprime.js"></script>
+<p id='message'>Message ici</p>
+
+<canvas id="dessin" width="256" height="256" style="background-color:aliceblue"></canvas>
+<p>Fin de page</p>
+
+<script>
+	function resolve () {
+		fmessage ("Ok");
+	}
+	function reject () {
+		fmessage ("Pas ok");
+	}
+
+	function toto() {
+
+	}
+	promesse = new Promise ((resolve, reject) => {
+		resolve();
+	}) ;
+
+</script>
+
+

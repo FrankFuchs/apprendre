@@ -1,0 +1,46 @@
+<h3>Exo : GPP </h3>
+
+<p id='p1'></p>
+
+<canvas id="dessin" width="256" height="256" style="background-color:aliceblue"></canvas>
+<p>Fin de page</p>
+
+<script>
+	function promOk () {
+
+	}
+	function promNOk () {
+
+	}
+	promesse = new Promise (promOk, promNOk);
+</script>
+
+<script>
+	
+	paragraphe = document.getElementById('p1');
+	url=getUrlGPP();
+	paragraphe.textContent=getUrlGPP();
+
+	url=getUrlGPP();
+	http=new XMLHttpRequest();
+	http.responseType='blob';
+	promise = http.open ('GET') ;
+	
+	
+
+fcanvas = 
+
+	function fcallback() {
+		if(http.readyState === 4 && http.status === 200) {
+			console.log('Requete revenue');
+			reponse=http.response;
+    		console.log(http.responseText);
+			document.getElementById ('dessin').innerHTML=http.responseText;
+			document.getElementById ('dessin').textContent='REquete ok';
+
+			
+		}
+	}
+	http.onreadystatechange = fcallback;
+</script>
+

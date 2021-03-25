@@ -1,0 +1,76 @@
+// Pas besoin de mettre <script> car c'est une fichier .js
+
+function fmessage (message) {
+	var v = document.getElementById('message');
+	v.textContent=message;
+}
+
+function fprime (n) {
+	if (n<2) then return false ;
+	
+	for (i=2; i<n; i++) {
+		if (n%i === 0) return false;
+		
+	}
+	return true;
+}
+
+function fprimeEnum (n) {
+	for (a=0; a<n; a++) {
+		if (fprime(a)) {
+			console ()
+		}
+		
+	}
+}
+
+
+function getUrlGPP () {
+	site='https://wxs.ign.fr/an7nvfzojv5wa96dsga5nk8w/geoportail/'
+	service='wmts?layer=ORTHOIMAGERY.ORTHOPHOTOS&style=normal&tilematrixset=PM&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image/jpeg&'
+	couche='TileMatrix=19&' 
+	x=265913;
+	y=180412;
+	iddalle= 'TileCol=' + x + '&TileRow=' + y;
+	url=site+service+couche+iddalle;
+	return url;
+}
+
+// Lecture d'une image : cela renvoie une PROMESSE.
+function lireImage(url) {
+    // Create new promise with the Promise() constructor;
+    // This has as its argument a function
+    // with two parameters, resolve and reject
+    return new Promise(function(resolve, reject) {
+      // Standard XHR to load an image
+      var request = new XMLHttpRequest();
+      request.open('GET', url);
+      request.responseType = 'blob';
+      // When the request loads, check whether it was successful
+      request.onload = function() {
+        if (request.status === 200) {
+        // If successful, resolve the promise by passing back the request response
+          resolve(request.response);
+        } else {
+        // If it fails, reject the promise with a error message
+          reject(Error('Image didn\'t load successfully; error code:' + request.statusText));
+        }
+      };
+      request.onerror = function() {
+      // Also deal with the case when the entire request fails to begin with
+      // This is probably a network error, so reject the promise with an appropriate message
+          reject(Error('There was a network error.'));
+      };
+      // Send the request
+      request.send();
+    });
+}
+
+// Lecture d'une image : renvoie une Image :
+// On perd volontairement l'aventage de l'asynchrone, mais 
+// c'est pour l'exercice.
+function lireImageAsImage (url) {
+
+	
+	lireImage (url()).then 
+}
